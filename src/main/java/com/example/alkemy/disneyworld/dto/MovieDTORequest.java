@@ -17,5 +17,5 @@ public class MovieDTORequest {
     private LocalDate creationDate;
     private Integer score;
     private List<GenreDTO> genres;
-    private List<CharacterDTORequest> characters;
+    private List<CharacterDTOCreation> characters;
 }

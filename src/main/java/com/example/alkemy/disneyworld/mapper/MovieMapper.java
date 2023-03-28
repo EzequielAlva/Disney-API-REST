@@ -50,7 +50,7 @@ public class MovieMapper {
         List<GenreDTOResponse> genres = movieGenreMapper.fromGenreEntitySet2GenreDTOList(entity.getGenres());
         dto.setGenres(genres);
         if(access){
-            List<CharacterDTOResponse> characters = movieCharacterMapper.fromCharacterEntitySet2DtoList(entity.getCharacters());
+            List<CharacterDTOCreation> characters = movieCharacterMapper.fromCharacterEntitySet2DtoList(entity.getCharacters());
             dto.setCharacters(characters);
         }
 

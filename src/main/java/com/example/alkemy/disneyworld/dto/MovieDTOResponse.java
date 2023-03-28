@@ -21,5 +21,5 @@ public class MovieDTOResponse {
     private LocalDate creationDate;
     private Integer score;
     private List<GenreDTOResponse> genres;
-    private List<CharacterDTOResponse> characters;
+    private List<CharacterDTOCreation> characters;
 }
