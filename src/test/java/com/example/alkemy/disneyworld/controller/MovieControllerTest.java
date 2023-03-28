@@ -400,7 +400,8 @@ public class MovieControllerTest {
     @WithMockUser(username = "admin@gmail.com", roles = "ADMIN")
     void getMoviesByFilters1() throws Exception {
         MovieDTOFilterResponse response = generateFilterResponse();
-        when(movieService.getMoviesByFilters(any(String.class), any(String.class), any(String.class))).thenReturn(List.of(response));
+        when(movieService.getMoviesByFilters(any(String.class), any(String.class), any(String.class)))
+                .thenReturn(List.of(response));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/disney/movies")
                         .param("name", "MyMovie")
@@ -642,10 +643,6 @@ public class MovieControllerTest {
 
         verifyNoInteractions(movieService);
     }
-
-
-
-
 
     static String generateId(){
         return UUID.randomUUID().toString();

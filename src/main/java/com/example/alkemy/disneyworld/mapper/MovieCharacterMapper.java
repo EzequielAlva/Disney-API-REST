@@ -21,7 +21,7 @@ public class MovieCharacterMapper {
     }
 
     //  --------------------- CREATE FROM DTO TO ENTITY ---------------------
-    public MovieCharacterEntity fromMovieCharacterDTO2Entity(CharacterDTORequest dto){
+    public MovieCharacterEntity fromMovieCharacterDTO2Entity(CharacterDTOCreation dto){
         Optional<MovieCharacterEntity> optional = movieCharacterRepository.findByName(dto.getName());
         if(optional.isEmpty()){
             MovieCharacterEntity entity = new MovieCharacterEntity();
@@ -34,17 +34,17 @@ public class MovieCharacterMapper {
         return optional.get();
     }
 
-    public Set<MovieCharacterEntity> fromCharacterDTOList2EntitySet(List<CharacterDTORequest> dtos){
+    public Set<MovieCharacterEntity> fromCharacterDTOList2EntitySet(List<CharacterDTOCreation> dtos){
         Set<MovieCharacterEntity> entities = new HashSet<>();
-        for(CharacterDTORequest dto : dtos){
+        for(CharacterDTOCreation dto : dtos){
             entities.add(this.fromMovieCharacterDTO2Entity(dto));
         }
         return entities;
     }
 
     //  ---------------------    FROM ENTITY TO DTO    ---------------------
-    public CharacterDTOResponse fromCharacterEntity2DTO(MovieCharacterEntity entity){
-        CharacterDTOResponse dto = new CharacterDTOResponse();
+    public CharacterDTOCreation fromCharacterEntity2DTO(MovieCharacterEntity entity){
+        CharacterDTOCreation dto = new CharacterDTOCreation();
         dto.setImage(entity.getImage());
         dto.setName(entity.getName());
         dto.setAge(entity.getAge());
@@ -65,8 +65,8 @@ public class MovieCharacterMapper {
         return dto;
     }
 
-    public List<CharacterDTOResponse> fromCharacterEntitySet2DtoList(Set<MovieCharacterEntity> entities){
-        List<CharacterDTOResponse> dtos = new ArrayList<>();
+    public List<CharacterDTOCreation> fromCharacterEntitySet2DtoList(Set<MovieCharacterEntity> entities){
+        List<CharacterDTOCreation> dtos = new ArrayList<>();
         for(MovieCharacterEntity entity : entities){
             dtos.add(this.fromCharacterEntity2DTO(entity));
         }

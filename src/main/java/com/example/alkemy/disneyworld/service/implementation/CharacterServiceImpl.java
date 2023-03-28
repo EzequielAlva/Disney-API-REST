@@ -23,7 +23,7 @@ public class CharacterServiceImpl implements CharacterService {
     private static final String NOT_FOUND_MESSAGE = "This character does not exist in database";
     private static final String ALREADY_EXIST_MESSAGE = "This character already exist in database";
     private static final String BAD_REQUEST_FIELD_MESSAGE = "The following field is not allowed to update: ";
-    private static final String BAD_REQUEST_TYPE_MISSMATCH_MESSAGE = "The value of the fields does not match: ";
+    private static final String BAD_REQUEST_TYPE_MISMATCH_MESSAGE = "The value of the fields does not match: ";
     @Autowired
     private MovieCharacterRepository movieCharacterRepository;
     @Autowired
@@ -32,12 +32,12 @@ public class CharacterServiceImpl implements CharacterService {
     private MovieCharacterMapper movieCharacterMapper;
 
     // -------------- CREATE CHARACTER --------------
-    public CharacterDTOResponse createCharacter(CharacterDTORequest characterDTORequest){
-        Optional<MovieCharacterEntity> optionalCharacter = movieCharacterRepository.findByName(characterDTORequest.getName());
+    public CharacterDTOCreation createCharacter(CharacterDTOCreation characterDTOCreation){
+        Optional<MovieCharacterEntity> optionalCharacter = movieCharacterRepository.findByName(characterDTOCreation.getName());
         if(!optionalCharacter.isEmpty()){
             throw new CharacterAlreadyExistException(ALREADY_EXIST_MESSAGE);
         }
-        MovieCharacterEntity character = movieCharacterMapper.fromMovieCharacterDTO2Entity(characterDTORequest);
+        MovieCharacterEntity character = movieCharacterMapper.fromMovieCharacterDTO2Entity(characterDTOCreation);
         movieCharacterRepository.save(character);
         return movieCharacterMapper.fromCharacterEntity2DTO(character);
     }
@@ -77,7 +77,7 @@ public class CharacterServiceImpl implements CharacterService {
                 throw new NullPointerException(BAD_REQUEST_FIELD_MESSAGE + (String) key);
             }
             if(field.getType().getName() != value.getClass().getName()){
-                throw new BadRequestException(BAD_REQUEST_TYPE_MISSMATCH_MESSAGE + "Should be " + field.getType().getName() + " but is " + value.getClass().getName());
+                throw new BadRequestException(BAD_REQUEST_TYPE_MISMATCH_MESSAGE + "Should be " + field.getType().getName() + " but is " + value.getClass().getName());
             }
             field.setAccessible(true);
             ReflectionUtils.setField(field, myCharacter, value);

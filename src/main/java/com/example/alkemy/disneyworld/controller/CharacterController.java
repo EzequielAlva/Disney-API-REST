@@ -1,9 +1,8 @@
 package com.example.alkemy.disneyworld.controller;
 
 import com.example.alkemy.disneyworld.dto.CharacterDTO;
+import com.example.alkemy.disneyworld.dto.CharacterDTOCreation;
 import com.example.alkemy.disneyworld.dto.CharacterDTOFilterResponse;
-import com.example.alkemy.disneyworld.dto.CharacterDTORequest;
-import com.example.alkemy.disneyworld.dto.CharacterDTOResponse;
 import com.example.alkemy.disneyworld.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +20,8 @@ public class CharacterController {
     private CharacterService characterService;
 
     @PostMapping(value = "/character")
-    public ResponseEntity<CharacterDTOResponse> createCharacter(@RequestBody CharacterDTORequest characterDTORequest){
-        CharacterDTOResponse response = characterService.createCharacter(characterDTORequest);
+    public ResponseEntity<CharacterDTOCreation> createCharacter(@RequestBody CharacterDTOCreation characterDTOCreation){
+        CharacterDTOCreation response = characterService.createCharacter(characterDTOCreation);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
