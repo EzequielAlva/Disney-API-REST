@@ -200,10 +200,6 @@ public class CharacterServiceTest {
 
     // -----------------------------------------------------------------
     // ----------------- Filter Characters ---------------
-    /*public List<CharacterDTOFilterResponse> findCharactersByFilter(String name, Integer age, Integer weight, String idMovie){
-        CharacterDTOFilterRequest characterDTO = new CharacterDTOFilterRequest(name, age, weight, idMovie);
-        List<MovieCharacterEntity> filteredCharacters = movieCharacterRepository.findAll(characterSpecification.getByFilters(characterDTO));
-        return movieCharacterMapper.fromCharacterFilteredEntityList2DTOList(filteredCharacters);*/
 
     @Test
     @DisplayName("Filter Characters - success")
